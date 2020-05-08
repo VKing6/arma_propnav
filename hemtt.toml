@@ -1,0 +1,4 @@
+name = "MANPADS Proportional Navigation Guidance"
+prefix = "vk_pn"
+version = "0.1"
+author = "VKing"
