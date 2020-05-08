@@ -21,7 +21,7 @@
 #define STAGE_LAUNCH 1
 #define STAGE_BOOST 2
 #define STAGE_TERMINAL 3
-systemChat "";
+
 params ["_seekerTargetPos", "_args","_attackProfileStateParams"];
 _args params ["_firedEH", "_launchParams"];
 _launchParams params ["","_targetLaunchParams"];
@@ -35,10 +35,17 @@ if (_seekerTargetPos isEqualTo [0,0,0]) exitWith {_seekerTargetPos};
 if (_attackProfileStateParams isEqualTo []) then {
     _attackProfileStateParams set [0, STAGE_LAUNCH];
 
-	private _wepDir = [secondaryWeapon _shooter] call ace_common_fnc_getWeaponAzimuthAndInclination;
-	private _initAimOffset = [100, _wepDir select 0, _wepDir select 1] call CBA_fnc_polar2vect;
-	private _initTargetPos = getPosASL _shooter vectorAdd (_initAimOffset);
-    _attackProfileStateParams set [1, _initTargetPos];
+    if (_shooter == ACE_PLAYER) then {
+        private _wepDir = [secondaryWeapon _shooter] call ace_common_fnc_getWeaponAzimuthAndInclination;
+        private _initAimOffset = [100, _wepDir select 0, _wepDir select 1] call CBA_fnc_polar2vect;
+        private _initTargetPos = getPosASL _shooter vectorAdd (_initAimOffset);
+        _attackProfileStateParams set [1, _initTargetPos];
+    } else {
+        private _wepDir = direction _shooter;
+        private _initAimOffset = [100, _wepDir, 45] call CBA_fnc_polar2vect;
+        private _initTargetPos = getPosASL _shooter vectorAdd (_initAimOffset);
+        _attackProfileStateParams set [1, _initTargetPos];
+    };
 };
 
 private _wep = _projectile;
@@ -59,27 +66,33 @@ private _returnTargetPos = _seekerTargetPos;
 
 
 switch (_attackProfileStateParams select 0) do {
-	case STAGE_LAUNCH: {
-		if (_distanceToShooter < 15) then {
+    case STAGE_LAUNCH: {
+        if (_distanceToShooter < 15) then {
             _returnTargetPos = _attackProfileStateParams select 1;
-		} else {
-			_attackProfileStateParams set [0, STAGE_BOOST];
-		};
-	};
-	case STAGE_BOOST: {
-		if (_distanceToShooter < 50) then {
+        } else {
+            _attackProfileStateParams set [0, STAGE_BOOST];
+        };
+    };
+    case STAGE_BOOST: {
+        if (_distanceToShooter < 50) then {
             _returnTargetPos = _tpos;
-		} else {
-			_attackProfileStateParams set [0, STAGE_TERMINAL];
-		};
-	};
-	case STAGE_TERMINAL: {
-		_returnTargetPos = _intercept;
-		//_returnTargetPos = _seekerTargetPos;
-		if (_distanceToTarget < 5) then {triggerAmmo _wep; player sideChat "Fuze!"};
-	};
+        } else {
+            _attackProfileStateParams set [0, STAGE_TERMINAL];
+        };
+    };
+    case STAGE_TERMINAL: {
+        _returnTargetPos = _intercept;
+        //_returnTargetPos = _seekerTargetPos;
+        if (_distanceToTarget < 5) then {
+            triggerAmmo _wep;
+            #ifdef DEBUG_MODE_FULL 
+                player sideChat "Fuze!";
+            #endif
+        };
+    };
 };
 
+#ifdef DEBUG_MODE_FULL
 
 drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\Cursors\explosive_ca.paa", [0,1,0,1], ASLtoAGL (_attackProfileStateParams select 1), 0.75, 0.75, 0, "Init", 1, 0.025, "TahomaB"];
 
@@ -99,5 +112,6 @@ private _tps = "#particlesource" createVehicleLocal (ASLtoAGL _tpos);
 _tps setParticleParams [["\A3\Data_f\cl_basic", 8, 3, 1], "", "Billboard", 1, 3.0141, [0, 0, 2], [0, 0, 0], 1, 1.275, 1, 0, [1, 1], [[1, 0, 0, 1], [1, 0, 0, 1], [1, 0, 0, 1]], [1], 1, 0, "", "", nil];
 _tps setDropInterval 3.0;
 
+#endif //DEBUG_MODE_FULL
 
 _returnTargetPos;
