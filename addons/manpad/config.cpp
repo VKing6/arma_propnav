@@ -8,13 +8,13 @@ class CfgPatches {
 };
 
 class Extended_PreInit_EventHandlers {
-    class manpad_test {
+    class vk_pn_manpad {
         init = "vk_pn_fnc_attackProfile_MANPAD = compile preprocessFileLineNumbers '\vk_pn_manpad\fnc_attackProfile_MANPAD.sqf'";
     };
 };
 
 class Ace_missileguidance_AttackProfiles {
-    class vk_pn_MANPAD {
+    class vk_pn_manpad {
         name = "";
         visualName = "";
         description = "";
@@ -106,8 +106,8 @@ class CfgAmmo {
             seekerMinRange = 0;
             seekerMaxRange = 5000;
 
-            defaultAttackProfile = "vk_pn_MANPAD";
-            attackProfiles[] = { "vk_pn_MANPAD" };
+            defaultAttackProfile = "vk_pn_manpad";
+            attackProfiles[] = { "vk_pn_manpad" };
         };
     };
     class rhs_ammo_fim92_missile: M_Titan_AA {};
@@ -132,8 +132,8 @@ class CfgAmmo {
             seekerMinRange = 0;
             seekerMaxRange = 5000;
 
-            defaultAttackProfile = "vk_pn_MANPAD";
-            attackProfiles[] = { "vk_pn_MANPAD" };
+            defaultAttackProfile = "vk_pn_manpad";
+            attackProfiles[] = { "vk_pn_manpad" };
         };
     };
     class rhs_ammo_9k38;
@@ -158,8 +158,8 @@ class CfgAmmo {
             seekerMinRange = 0;
             seekerMaxRange = 5000;
 
-            defaultAttackProfile = "vk_pn_MANPAD";
-            attackProfiles[] = { "vk_pn_MANPAD" };
+            defaultAttackProfile = "vk_pn_manpad";
+            attackProfiles[] = { "vk_pn_manpad" };
         };
     };
 };
