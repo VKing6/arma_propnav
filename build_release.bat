@@ -1,3 +1,3 @@
 @echo off
-.\hemtt.exe build --release
+.\hemtt.exe build --release -f
 pause

@@ -1,4 +1,5 @@
-name = "MANPADS Proportional Navigation Guidance"
+name = "Proportional Navigation Missile Guidance"
 prefix = "vk_pn"
-version = "0.1"
+version = "0.1.1"
 author = "VKing"
+files = ["mod.cpp"]
