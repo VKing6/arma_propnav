@@ -3,13 +3,13 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = 1.0;
-        requiredAddons[] = {"ace_missileguidance"};
+        requiredAddons[] = {"itc_land_vls","ace_missileguidance"};
     };
 };
 
 class Extended_PreInit_EventHandlers {
     class vk_pn_vls {
-        init = "vk_pn_fnc_attackProfile_VLS = compile preprocessFileLineNumbers '\vk_pn_vls\fnc_attackProfile_vls.sqf'";
+        init = "vk_pn_fnc_attackProfile_VLS = compile preprocessFileLineNumbers '\vk_pn_vls\fnc_attackProfile_sam_vls.sqf'";
     };
 };
 
@@ -23,35 +23,63 @@ class Ace_missileguidance_AttackProfiles {
     };
 };
 
+class CfgVehicles {
+    class StaticWeapon;
+    class StaticMGWeapon : StaticWeapon {
+        class Turrets {
+            class MainTurret;
+        };
+    };
+    class B_Ship_MRLS_01_base_F : StaticMGWeapon {
+        class Turrets : Turrets {
+            class MainTurret: MainTurret {};
+        };
+        class AnimationSources {
+            class Missiles_revolving;
+        };
+    };
+    class itc_land_b_vls2 : B_Ship_MRLS_01_base_F {};
+    class vk_pnav_b_vls2_mod: itc_land_b_vls2 {
+        displayName = "MN230(v)K VLS (Air Defense)";
+        class Turrets : Turrets {
+            class MainTurret: MainTurret {
+                weapons[] = {"vk_pnav_mn230essm_mod_launcher"};
+                magazines[] = {"vk_pnav_mn230essm_mod_x18"};
+            };
+        };
+        class AnimationSources: AnimationSources {
+            class Missiles_revolving: Missiles_revolving {
+                weapon = "vk_pnav_mn230essm_mod_launcher";
+            };
+        };
+    };
+};
+
 class CfgWeapons {
-    class weapon_VLS_01;
-    class vk_pnav_VLS_SAM: weapon_VLS_01 {
-        displayname = "RIM-145(v) VLS";
-        magazines[] = {"vk_pnav_16rnd_rim145_vls"};
+    class itc_land_mn230essm_launcher;
+    class vk_pnav_mn230essm_mod_launcher: itc_land_mn230essm_launcher {
+        magazines[] = {"vk_pnav_mn230essm_mod_x18"};
     };
 };
 
 class CfgMagazines {
-    class magazine_Missile_mim145_x4;
-    class vk_pnav_16rnd_rim145_vls: magazine_Missile_mim145_x4 {
-        displayName = "RIM-145(v)";
-        descriptionShort = "RIM-145(v) Surface-to-Air Missile";
-        ammo = "vk_pnav_M_rim145";
-        count = 16;
-        initSpeed = 50;
+    class itc_land_mn230essm_x18;
+    class vk_pnav_mn230essm_mod_x18: itc_land_mn230essm_x18 {
+        ammo = "vk_pnav_ammo_mn230_essm_mod";
+        initSpeed = 30;
     };
 };
 
 class CfgAmmo {
-    class ammo_Missile_mim145;
-    class vk_pnav_M_rim145: ammo_Missile_mim145 {
-        initTime = 0.6;
+    class itc_land_ammo_mn230_essm;
+    class vk_pnav_ammo_mn230_essm_mod: itc_land_ammo_mn230_essm {
+        initTime = 1;
         class ace_missileguidance {
             enabled = 1;
             
-            minDeflection = 0.001;      // Minium flap deflection for guidance
+            minDeflection = 0.000;      // Minium flap deflection for guidance
             //maxDeflection = 0.025;       // Maximum flap deflection for guidance
-            maxDeflection = 0.05;       // Maximum flap deflection for guidance
+            maxDeflection = 0.01;       // Maximum flap deflection for guidance
             incDeflection = 0.001;      // The incrmeent in which deflection adjusts.
             canVanillaLock = 1;
 
@@ -64,7 +92,7 @@ class CfgAmmo {
             seekerAccuracy = 1;
 
             seekerMinRange = 0;
-            seekerMaxRange = 15000;
+            seekerMaxRange = 20000;
 
             defaultAttackProfile = "vk_pn_vls";
             attackProfiles[] = { "vk_pn_vls" };

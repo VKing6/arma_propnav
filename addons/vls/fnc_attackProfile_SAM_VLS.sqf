@@ -15,7 +15,7 @@
  *
  * Public: No
  */
-// #define DEBUG_MODE_FULL
+#define DEBUG_MODE_FULL
 //#include "script_component.hpp"
 
 #define STAGE_LAUNCH 1
@@ -34,7 +34,7 @@ if (_seekerTargetPos isEqualTo [0,0,0]) exitWith {_seekerTargetPos};
 
 if (_attackProfileStateParams isEqualTo []) then {
     _attackProfileStateParams set [0, STAGE_LAUNCH];
-    private _initTargetPos = getPosASL _shooter vectorAdd [0,0,100];
+    private _initTargetPos = getPosASL _shooter vectorAdd [0,0,200];
     _attackProfileStateParams set [1, _initTargetPos];
 };
 
@@ -56,14 +56,15 @@ private _returnTargetPos = _seekerTargetPos;
 
 switch (_attackProfileStateParams select 0) do {
     case STAGE_LAUNCH: {
-        if (_distanceToShooter < 30) then {
+        if (_distanceToShooter < 100) then {
             _returnTargetPos = _attackProfileStateParams select 1;
         } else {
             _attackProfileStateParams set [0, STAGE_BOOST];
         };
     };
     case STAGE_BOOST: {
-        if (_distanceToShooter < 100) then {
+        // if (_distanceToShooter < 200) then {
+        if (_wpos vectorDistance (_attackProfileStateParams # 1) < 200) then {
             _returnTargetPos = _seekerTargetPos;
         } else {
             _attackProfileStateParams set [0, STAGE_TERMINAL];
@@ -71,7 +72,6 @@ switch (_attackProfileStateParams select 0) do {
     };
     case STAGE_TERMINAL: {
         _returnTargetPos = _intercept;
-        //_returnTargetPos = _seekerTargetPos;
         if (_distanceToTarget < 8) then {
             triggerAmmo _wep;
             #ifdef DEBUG_MODE_FULL 
