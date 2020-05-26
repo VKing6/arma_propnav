@@ -32,19 +32,25 @@ class CfgMagazineWells {
 class CfgWeapons {
     class Launcher_Base_F;
     class launch_Titan_base: Launcher_Base_F {
-        weaponLockDelay = 1;
+        weaponLockDelay = 0.1;
     };
     class launch_O_Titan_F;
     class rhs_weap_fim92: launch_O_Titan_F {
-        weaponLockDelay = 1;
+        weaponLockDelay = 0.1;
         magazines[] = {"rhs_fim92_mag", "vk_pnav_fim92_mag"};
         magazineWell[] = {};
     };
     class rhs_weap_strela;
     class rhs_weap_igla: rhs_weap_strela {
-        weaponLockDelay = 1;
+        weaponLockDelay = 0.1;
         magazines[] = {"rhs_mag_9k38_rocket", "vk_pnav_9k38_mag"};
         magazineWell[] = {};
+    };
+    class rhs_weap_TOW_Launcher;
+    class rhs_weap_stinger_Launcher: rhs_weap_TOW_Launcher {
+        weaponLockDelay = 0.1;
+        magazines[] = {"rhs_mag_4Rnd_stinger", "rhs_mag_2Rnd_stinger",
+                       "vk_pnav_4Rnd_stinger", "vk_pnav_2Rnd_stinger"};
     };
 };
 
@@ -62,7 +68,7 @@ class CfgMagazines {
     };
     class rhs_fim92_mag: Titan_AA {};
     class vk_pnav_fim92_mag: rhs_fim92_mag {
-        displayName = "FIM-92Vk";
+        displayName = "FIM-92(v)K";
         ammo = "vk_pnav_fim92_missile";
         ace_overpressure_priority = 5;
         ace_overpressure_angle = 30;
@@ -72,11 +78,26 @@ class CfgMagazines {
     class rhs_mag_9k38_rocket;
     class vk_pnav_9k38_mag: rhs_mag_9k38_rocket {
         displayName = "9K38Vk";
-        ammo = "vk_pnav_fim92_missile";
+        ammo = "vk_pnav_9k38_missile";
         ace_overpressure_priority = 5;
         ace_overpressure_angle = 30;
         ace_overpressure_range = 1;
         ace_overpressure_damage = 0.2;
+    };
+
+    class rhs_mag_4Rnd_stinger;
+    class vk_pnav_4Rnd_stinger: rhs_mag_4Rnd_stinger {
+        ammo = "vk_pnav_fim92_missile";
+        displayname = "FIM-92(v)K Stinger";
+        displaynameshort = "FIM-92(v)K";
+        initspeed = 60;
+    };
+    class rhs_mag_2Rnd_stinger;
+    class vk_pnav_2Rnd_stinger: rhs_mag_2Rnd_stinger {
+        ammo = "vk_pnav_fim92_missile";
+        displayname = "FIM-92(v)K Stinger";
+        displaynameshort = "FIM-92(v)K";
+        initspeed = 60;
     };
 };
 
