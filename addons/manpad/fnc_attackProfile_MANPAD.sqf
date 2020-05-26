@@ -15,7 +15,7 @@
  *
  * Public: No
  */
-// #define DEBUG_MODE_FULL
+#define DEBUG_MODE_FULL
 //#include "script_component.hpp"
 
 #define STAGE_LAUNCH 1
@@ -26,7 +26,7 @@ params ["_seekerTargetPos", "_args","_attackProfileStateParams"];
 _args params ["_firedEH", "_launchParams"];
 _launchParams params ["","_targetLaunchParams"];
 _targetLaunchParams params ["_target", "", "_launchPos"];
-_firedEH params ["_shooter","","","","","","_projectile"];
+_firedEH params ["_shooter","_weapon","","","","","_projectile","_gunner"];
 
 
 if (_seekerTargetPos isEqualTo [0,0,0]) exitWith {_seekerTargetPos};
@@ -35,17 +35,10 @@ if (_seekerTargetPos isEqualTo [0,0,0]) exitWith {_seekerTargetPos};
 if (_attackProfileStateParams isEqualTo []) then {
     _attackProfileStateParams set [0, STAGE_LAUNCH];
 
-    if (_shooter == ACE_PLAYER) then {
-        private _wepDir = [secondaryWeapon _shooter] call ace_common_fnc_getWeaponAzimuthAndInclination;
-        private _initAimOffset = [100, _wepDir select 0, _wepDir select 1] call CBA_fnc_polar2vect;
-        private _initTargetPos = getPosASL _shooter vectorAdd (_initAimOffset);
-        _attackProfileStateParams set [1, _initTargetPos];
-    } else {
-        private _wepDir = direction _shooter;
-        private _initAimOffset = [100, _wepDir, 45] call CBA_fnc_polar2vect;
-        private _initTargetPos = getPosASL _shooter vectorAdd (_initAimOffset);
-        _attackProfileStateParams set [1, _initTargetPos];
-    };
+    private _wepDir = (_shooter weaponDirection _weapon) call CBA_fnc_vect2polar;
+    private _initAimOffset = [100, _wepDir # 1, _wepDir # 2] call CBA_fnc_polar2vect;
+    private _initTargetPos = getPosASL _shooter vectorAdd (_initAimOffset);
+    _attackProfileStateParams set [1, _initTargetPos];
 };
 
 private _wep = _projectile;
