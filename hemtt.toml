@@ -1,5 +1,5 @@
 name = "Proportional Navigation Missile Guidance"
 prefix = "vk_pn"
-version = "0.1.1"
+version = "0.2.0"
 author = "VKing"
 files = ["mod.cpp"]
