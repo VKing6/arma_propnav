@@ -7,9 +7,8 @@ class CfgAmmo {
         class ace_missileguidance {
             enabled = 1;
             
-            minDeflection = 0.001;      // Minium flap deflection for guidance
-            //maxDeflection = 0.025;       // Maximum flap deflection for guidance
-            maxDeflection = 0.05;       // Maximum flap deflection for guidance
+            minDeflection = 0.0;      // Minium flap deflection for guidance
+            maxDeflection = 0.025;       // Maximum flap deflection for guidance
             incDeflection = 0.001;      // The incrmeent in which deflection adjusts.
             canVanillaLock = 1;
 
@@ -33,9 +32,8 @@ class CfgAmmo {
         class ace_missileguidance {
             enabled = 1;
             
-            minDeflection = 0.001;      // Minium flap deflection for guidance
-            //maxDeflection = 0.025;       // Maximum flap deflection for guidance
-            maxDeflection = 0.05;       // Maximum flap deflection for guidance
+            minDeflection = 0.0;      // Minium flap deflection for guidance
+            maxDeflection = 0.025;       // Maximum flap deflection for guidance
             incDeflection = 0.001;      // The incrmeent in which deflection adjusts.
             canVanillaLock = 1;
 
@@ -59,9 +57,8 @@ class CfgAmmo {
         class ace_missileguidance {
             enabled = 1;
             
-            minDeflection = 0.001;      // Minium flap deflection for guidance
-            //maxDeflection = 0.025;       // Maximum flap deflection for guidance
-            maxDeflection = 0.05;       // Maximum flap deflection for guidance
+            minDeflection = 0.0;      // Minium flap deflection for guidance
+            maxDeflection = 0.025;       // Maximum flap deflection for guidance
             incDeflection = 0.001;      // The incrmeent in which deflection adjusts.
             canVanillaLock = 1;
 
