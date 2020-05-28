@@ -9,7 +9,7 @@ class CfgPatches {
 
 class Extended_PreInit_EventHandlers {
     class vk_pn_guidance {
-        init = "call compile preprocessFileLineNumbers '\vk\pn_guidance\XEH_PreInit.sqf'";
+        init = "call compile preprocessFileLineNumbers '\vk_pn_guidance\XEH_PreInit.sqf'";
     };
 };
 
