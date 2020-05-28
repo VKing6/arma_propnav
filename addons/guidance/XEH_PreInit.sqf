@@ -1,0 +1,2 @@
+vk_pn_fnc_attackProfile_sam     = compile preprocessFileLineNumbers "\vk_pn_guidance\fnc_attackProfile_sam.sqf";
+vk_pn_fnc_attackProfile_sam_vls = compile preprocessFileLineNumbers "\vk_pn_guidance\fnc_attackProfile_sam_vls.sqf";

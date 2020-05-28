@@ -34,12 +34,12 @@ class CfgVehicles {
     class APC_Tracked_03_base_F: Tank_F {};
     class RHS_M2A2_Base: APC_Tracked_03_base_F {};
     class RHS_M6: RHS_M2A2_Base {};
-    class vk_pnav_M6: RHS_M6 {
+    class vk_pn_M6: RHS_M6 {
         displayName = "M2A6(v)";
         class Turrets: Turrets {
             class MainTurret: MainTurret {
                 magazines[] = {"rhs_mag_1100Rnd_762x51_M240", "rhs_mag_1100Rnd_762x51_M240",
-                    "vk_pnav_4Rnd_stinger", "vk_pnav_4Rnd_stinger", "vk_pnav_4Rnd_stinger",
+                    "vk_pn_4Rnd_stinger", "vk_pn_4Rnd_stinger", "vk_pn_4Rnd_stinger",
                     "rhs_mag_70Rnd_25mm_M242_APFSDS", "rhs_mag_230Rnd_25mm_M242_HEI", 
                     "rhs_mag_70Rnd_25mm_M242_APFSDS", "rhs_mag_230Rnd_25mm_M242_HEI", 
                     "rhs_laserfcsmag", "rhs_laserfcsmag"};
@@ -59,7 +59,7 @@ class CfgVehicles {
                 count = 11;
             };
             class _xx_rhs_fim92_mag {
-                magazine = "vk_pnav_fim92_mag";
+                magazine = "vk_pn_fim92_mag";
                 count = 4;
             };
             class _xx_rhs_mag_M441_HE {
@@ -97,12 +97,12 @@ class CfgVehicles {
         };
     };
     class RHS_M6_wd: RHS_M6 {};
-	class vk_pnav_M6_wd: RHS_M6_wd {
+	class vk_pn_M6_wd: RHS_M6_wd {
         displayName = "M2A6(v)";
         class Turrets: Turrets {
             class MainTurret: MainTurret {
                 magazines[] = {"rhs_mag_1100Rnd_762x51_M240", "rhs_mag_1100Rnd_762x51_M240",
-                    "vk_pnav_4Rnd_stinger", "vk_pnav_4Rnd_stinger", "vk_pnav_4Rnd_stinger",
+                    "vk_pn_4Rnd_stinger", "vk_pn_4Rnd_stinger", "vk_pn_4Rnd_stinger",
                     "rhs_mag_70Rnd_25mm_M242_APFSDS", "rhs_mag_230Rnd_25mm_M242_HEI", 
                     "rhs_mag_70Rnd_25mm_M242_APFSDS", "rhs_mag_230Rnd_25mm_M242_HEI", 
                     "rhs_laserfcsmag", "rhs_laserfcsmag"};
@@ -122,7 +122,7 @@ class CfgVehicles {
                 count = 11;
             };
             class _xx_rhs_fim92_mag {
-                magazine = "vk_pnav_fim92_mag";
+                magazine = "vk_pn_fim92_mag";
                 count = 4;
             };
             class _xx_rhs_mag_M441_HE {
