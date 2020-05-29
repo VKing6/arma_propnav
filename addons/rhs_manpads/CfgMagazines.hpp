@@ -10,7 +10,7 @@ class CfgMagazines {
     };
     class rhs_mag_9k38_rocket;
     class vk_pn_9k38_mag: rhs_mag_9k38_rocket {
-        displayName = "9K38Vk";
+        displayName = "9K38 ВК";
         ammo = "vk_pn_9k38_missile";
         ace_overpressure_priority = 5;
         ace_overpressure_angle = 30;
